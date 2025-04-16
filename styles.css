@@ -1,0 +1,144 @@
+body {
+    background: linear-gradient(135deg, #98b2ce, #b5c6e9);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+.logo {
+    width: 8rem; /* Utilisation d'unités relatives */
+    margin-bottom: 1.25rem;
+}
+
+.container {
+    background-color: white;
+    padding: 1.875rem 2.5rem;
+    border-radius: 0.9375rem;
+    box-shadow: 0 0.625rem 1.875rem rgba(0, 0, 0, 0.2);
+    text-align: center;
+    animation: fadeIn 1s ease-in;
+
+}
+
+h2 {
+    margin-bottom: 1.25rem;
+    color: #333;
+}
+
+
+input[type="password"] {
+    width: 100%;
+    padding: 0.75rem; /* 12px en rem */
+    margin-bottom: 1.25rem; /* 20px en rem */
+    border: 1px solid #ccc;
+    border-radius: 0.5rem; /* 8px en rem */
+    font-size: 1rem; /* 16px en rem */
+}
+
+button {
+    background-color: #7fa77b;
+    color: white;
+    padding: 0.75rem 1.5rem; /* 12px et 24px en rem */
+    border: none;
+    border-radius: 0.5rem; /* 8px en rem */
+    font-size: 1rem; /* 16px en rem */
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button:hover,
+button:focus { /* Ajout de l'état focus */
+    background-color: #98b2ce;
+    outline: none; /* Supprime le contour par défaut */
+}
+
+.link a {
+    display: inline-block;
+    margin-top: 1rem; /* 15px en rem */
+    color: #82c085;
+    font-weight: bold;
+    font-size: 1.8rem; /* 20px en rem */
+}
+
+.text b {
+    display: inline-block;
+    margin-top: 1rem; /* 15px en rem */
+    color: #000000;
+    text-decoration: underline;
+    font-size: 1.75rem; /* 20px en rem */
+}
+
+.link a:hover,
+.link a:focus { /* Ajout de l'état focus */
+    text-decoration: underline;
+}
+
+@media (max-width: 600px) {
+    .container {
+        width: 90%;
+        padding: 1.25rem; /* 20px en rem */
+    }
+
+    .logo {
+        width: 5rem; /* 80px en rem */
+    }
+
+    h2 {
+        font-size: 1.25rem; /* 20px en rem */
+    }
+
+    button {
+        width: 100%;
+    }
+}
+
+#map {
+    position: relative;
+    z-index: 1000;
+}
+
+#debug-container {
+    margin-top: 0.625rem; /* 10px en rem */
+    text-align: left;
+    padding: 0.625rem; /* 10px en rem */
+    border: 1px solid #ccc;
+    font-family: Arial, sans-serif;
+}
+
+#toggle-debug {
+    background: none;
+    border: none;
+    font-size: 1rem; /* 16px en rem */
+    font-weight: bold;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    margin-bottom: 0.3125rem; /* 5px en rem */
+}
+
+#arrow {
+    display: inline-block;
+    transition: transform 0.3s ease;
+    margin-right: 0.5rem; 
+} 
+
+  
+  #toggle-debug.open #arrow {
+    transform: rotate(90deg);
+  }
+  .mappage {
+  background-color: #7fa77b;
+    color: white;
+    padding: 0.75rem 1.5rem; /* 12px et 24px en rem */
+    border: none;
+    border-radius: 0.5rem; /* 8px en rem */
+    font-size: 1rem; /* 16px en rem */
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
