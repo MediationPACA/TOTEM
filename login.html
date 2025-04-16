@@ -7,13 +7,14 @@
     <link rel="stylesheet" href="styles.css">
     <link rel="icon" href="TOTEM1.png" type="image/png">
     <script>
-        // Gérer l'appui sur la touche Entrée
+        // Fonction pour gérer l'événement de la touche "Entrée"
         function handleKeyPress(event) {
-            if (event.key === "Enter") {
-                verifier(); // Appel de la fonction de vérification
+            if (event.key === "Enter") { // Vérifie si la touche pressée est "Entrée"
+                verifier(); // Appelle la fonction de vérification
             }
         }
 
+        // Ajoute l'événement au chargement de la page
         window.onload = function() {
             document.getElementById("password").addEventListener("keydown", handleKeyPress);
         };
@@ -23,18 +24,9 @@
     <div class="container">
         <img src="TOTEM1.png" alt="Logo de l'association" class="logo">
         <h2>Connexion</h2>
-        <!-- Champ mot de passe -->
         <input type="password" id="password" placeholder="Entrez le mot de passe">
-        <!-- Sélection de l'espace -->
-        <select id="space">
-            <option value="mediation">Espace Médiation</option>
-            <option value="diffusion">Espace Diffusion</option>
-            <option value="direction">Espace Direction</option>
-        </select>
         <button onclick="verifier()">Valider</button>
-        <p class="link">
-            <a href="https://www.asso-totem.com/" target="_blank">Visiter le site de l'association</a>
-        </p>
+        <p class="link"><a href="https://www.asso-totem.com/" target="_blank">Visiter le site de l'association</a></p>
         <p class="text"><b>0483650279</b></p>
     </div>
 </body>

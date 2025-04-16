@@ -5,32 +5,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="icon" type="image/png" href="TOTEM1.png">
   <title>Urgence 2025</title>
- 
-  <style>
-    body.noscroll {
-        overflow: hidden; /* Désactive le défilement */
-    }
-</style>
-  <script src="auth.js"></script>
-  <script>
-    window.onbeforeunload = function() {
-        return undefined; // Évite le pop-up de confirmation
-    };
-
-    window.onload = function() {
-        window.scrollTo(0, 0); // Reste en haut de la page
-    };
-</script>
-  <script>
-    try {
-      checkAccess();
-    } catch (error) {
-      console.error("Erreur lors de la vérification d'accès :", error);
-    }
-  </script>
-  
-  <!-- Inclusion des bibliothèques -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.0/papaparse.min.js"></script>
+  
+
+
+
+
+
   <style>
     /* Vos styles CSS */
     * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -39,7 +20,6 @@
     .header h1 { font-size: 30px; font-weight: bold; }
     .header p { font-size: 20px; font-weight: bold; max-width: 600px; margin-top: 1px; }
     .phone { font-size: 32px; font-weight: bold; margin-top: 20px; }
-    .page { font-size: 22px; font-weight: bold; margin-top: 3px; }
     #map { height: 410px; width: 100%; }
     #error-message { color: red; }
     #debug-info { margin-top: 10px; white-space: pre-wrap; font-family: Arial, sans-serif; }
@@ -59,72 +39,35 @@
     .navbar {
             display: flex;
             justify-content: space-between;
-            align-items: none;
+            align-items: center;
             padding: 10px;
             background-color: #7fa77b; /* Couleur de fond de la barre de navigation */
         }
         .logout-button {
-  position: absolute;
-  top: 20px;
-  right: 30px;
-  background-color: #7fa77b;
-  color: white;
-  border: none;
-  border-radius: 5px;
-  padding: 14px 30px;
-  cursor: pointer;
-  z-index: 10;
-}
-.logout-button:hover {
-  background-color: #c82333;
-}
-
-        .link1 {
-  display: inline-block;
-  padding: 3px 10px;
-  background-color: #e6e6e6;
-  color: rgb(0, 0, 0);
-  text-decoration: none;
-  border-radius: 5px;
-  font-weight: none;
-}
-.link1:hover {
-  background-color: #7fa77b;
-}
-.link:hover {
-  background-color: #7fa77b;
-}
-.sites {
-  padding: 11px 12px;
-  font-weight: bold;
-}
-.sites:hover {
+            background-color: #7fa77b; /* Couleur de déconnexion */
+            color: white;
+            border: none;
+            border-radius: 5px;
+            padding: 10px 20px;
+            cursor: pointer;
+        }
+        .logout-button:hover {
             background-color: #c82333; /* Couleur plus foncée au survol */
         }
   </style>
-</head>
-<body onload="checkAccess()">
-  <div class="header">
-    <h1>Urgence 2025</h1>
-    <p>
-      Malgré la neige, et le vent … et la pluie, Malgré les rafales et les intempéries,<br>
-      Et la grêle, et les tourbillons, Par-dessus les plaines et les monts,<br>
-      Défiant les tornades et les éclairs, Alizé, aquilon et tonnerre,<br>
-      Le rapatrieur dévoué vole livrer à chacun son bébé,<br>
-      Rien ne saurait l’arrêter !<br><br>
-      <strong>DUMBO</strong>
-    </p>
-    <p class="phone">0483650279</p>
+        </head>
+        <body>
+            <div class="header">
+                <h1>Urgence 2025</h1>
+          <p class="phone">0483650279</p>
     <button class="logout-button" onclick="deconnexion()">Déconnexion</button>
   </div>
-  <p class="page">Médiation</p>
-    <button class= "sites" onclick="window.location.href='sites.html'"> Sites Utiles </button>
-    <button class= "sites" onclick="window.location.href='DOC.html'"> Doc Véto/bénévoles </button>
-
-
+  <div> <button class= "mappage" onclick="window.location.href='index.html'"> Médiation </button></div>
+  <div> <button class= "mapage" onclick="window.location.href='sub1.html'"> Mé </button></div>
+  
   <div id="map"></div>
-
-  <!-- Barre de recherche et légende -->
+  
+  
   <div id="search-container">
     <button id="switchMapButton">Afficher/Enlever la carte bénévoles</button>
     <button id="switchMapButton2">Afficher/Enlever la carte Relai</button>
@@ -134,9 +77,6 @@
 <button id="manualSearchButton">Rechercher</button>
 
     <button id="switchMapButtonUrgence">Carte Urgence (Ajouter/Enlever tous les bénévoles)</button>
-  </br><a class="link1" href="https://www.ornitho.com/" target="_blank">Identification oiseau IA</a>
-    <a class="link1" href="https://www.oiseaux.net/identifier/accueil.html" target="_blank">Aide identification</a>
-    <a class="link1" href="https://www.oisillon.net/apprendre-reconnaitre-oiseaux-de-jardin" target="_blank">Aide identification 2</a>
     <div id="legend">
       </br> <strong>Légende :</strong>
       <ul id="legend-list"></ul>
@@ -148,22 +88,7 @@
       </button>
       <div id="debug-info" style="display: none;"></div>
     
-  </div>
-
-  <!-- Iframes divers -->
-  <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSdYmy3eCjHTysUDNlxZLb3flDGO8rR5OBlYthfuRYx3zOSZNA/viewform?embedded=true" width="640" height="800" frameborder="0" marginheight="0" marginwidth="0">Chargement…</iframe>
-  <p class="link"><a href="https://docs.google.com/spreadsheets/d/1WJ5bBVULuvcCbTtekb4jAbY58cHOA0YmbLiuPDiQZ64/edit?resourcekey=&gid=527237974#gid=527237974" target="_blank">Médiation</a></p>
-
   
-  <iframe src="https://docs.google.com/spreadsheets/d/1WJ5bBVULuvcCbTtekb4jAbY58cHOA0YmbLiuPDiQZ64/edit" width="100%" height="1000"></iframe>
-  <p class="link"><a href="https://docs.google.com/spreadsheets/d/1PSjpRvCEZI1pqhebKzsGvdVUrOHlzc1d/edit?gid=1056850233#gid=1056850233" target="_blank">Véto83</a></p>
-
-  <p class="link"><a href="https://docs.google.com/spreadsheets/d/1SjBmjncMrk6WSFh-0KUzp8Rr55EZqYpcsL2PetWwskU/edit?gid=0#gid=0" target="_blank">Bénévoles</a></p>
-  <iframe src="https://drive.google.com/file/d/1O53vgIu8fT0flb4bh12cCP7a_gxP2fxq/preview" width="800" height="1000"></iframe>
-  <iframe src="https://docs.google.com/document/d/1rtHrRyi4FYOWsCzVXqs7j0Zb_JFObA4NflO_UyifUnw/edit?" width="800px" height="1000"></iframe>
-  <iframe src="https://www.google.com/maps/d/u/0/embed?mid=1-tf56PIvRYV-y_Zvg2n36OfwC4Sv-MY&femb=1&ll=43.4647048189242%2C6.29414399999999&z=9" width="800" height="800"></iframe>
-
-  <!-- Votre code JavaScript principal -->
   <script>
     let map;
     let markers = [];
@@ -174,15 +99,13 @@
     let currentSearchIndex = 0;
     let lastSearchTerm = "";
     let urgentMode = false;
-    
 
     const csvURL1 = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vSgn7Ua3wOiYoVnr2Tl-dSiBucRC_w0mUEJdMmdmeySAEiEBkBGyLmjuXcCSkR_AYzt_r92du7FfWHk/pub?gid=527237974&single=true&output=csv';
     const csvURL2 = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vSsfjj7eltK_SoO5hXkwQeZIp-Cufzc1DrcMUOyhrRnvgPi6w4cJB3fVCptVpiQG7RwB6EmsnqhZhQF/pub?gid=0&single=true&output=csv';
     const csvURL3 = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vRJbceq23ZJu_g-hTTFpIEEQbypFTT_dCABIIUcLcrUo9rilU0MmRG-NGFUCEJ_dw/pub?gid=1056850233&single=true&output=csv';
     let currentCSV = csvURL1;
-
-    // Fonctions de création des icônes SVG (les fonctions createPhoneSVG, createAmbulanceSVG, etc.)
-    function createPhoneSVG(color) { return `data:image/svg+xml;charset=UTF-8,<svg xmlns="http://www.w3.org/2000/svg" width="40" height="40"><text x="5" y="30" font-size="30" fill="${color}">📞</text></svg>`; }
+     // Fonctions de création des icônes SVG (les fonctions createPhoneSVG, createAmbulanceSVG, etc.)
+     function createPhoneSVG(color) { return `data:image/svg+xml;charset=UTF-8,<svg xmlns="http://www.w3.org/2000/svg" width="40" height="40"><text x="5" y="30" font-size="30" fill="${color}">📞</text></svg>`; }
     function createAmbulanceSVG(color) { return `data:image/svg+xml;charset=UTF-8,<svg xmlns="http://www.w3.org/2000/svg" width="40" height="40"><text x="5" y="30" font-size="30" fill="${color}">🚑</text></svg>`; }
     function createCrossSVG(color) { return `data:image/svg+xml;charset=UTF-8,<svg xmlns="http://www.w3.org/2000/svg" width="40" height="40"><text x="5" y="30" font-size="30" fill="${color}">🩺</text></svg>`; }
     function createMammSVG(color) { return `data:image/svg+xml;charset=UTF-8,<svg xmlns="http://www.w3.org/2000/svg" width="40" height="40"><text x="5" y="30" font-size="30" fill="${color}">🦊</text></svg>`; }
@@ -194,10 +117,7 @@
     function createserpSVG(color) { return `data:image/svg+xml;charset=UTF-8,<svg xmlns="http://www.w3.org/2000/svg" width="40" height="40"><text x="5" y="30" font-size="30" fill="${color}">🐍</text></svg>`; }
     function createamphiSVG(color) { return `data:image/svg+xml;charset=UTF-8,<svg xmlns="http://www.w3.org/2000/svg" width="40" height="40"><text x="5" y="30" font-size="30" fill="${color}">🐸</text></svg>`; }
     function createTriangleSVG(color) { return `data:image/svg+xml;charset=UTF-8,<svg width="20" height="20" viewBox="0 0 30 30" xmlns="http://www.w3.org/2000/svg"><polygon points="15,5 25,25 5,25" fill="${color}" stroke="black" stroke-width="2" /></svg>`; }
-    function createInterventionSVG(color) {  return `data:image/svg+xml;utf-8,<svg xmlns="http://www.w3.org/2000/svg" width="48" height="48"><text x="1" y="42" font-size="40" fill="${color}">⭕</text> </svg>`;
-}
 
-    // Fonction de géocodage avec cache
     async function geocodeWithCache(geocoder, cityName) {
       let cache = JSON.parse(localStorage.getItem(GEOCODING_CACHE_KEY) || '{}');
       if (cache[cityName]) {
@@ -220,8 +140,6 @@
         });
       });
     }
-
-    // Fonctions pour extraire les données CSV selon l'URL
     function extractData(row, csvUrl) {
       if (csvUrl === csvURL1) {
         return {
@@ -235,9 +153,8 @@
           seil: row[0]?.trim() || '',
           Esp: row[14]?.trim() || '',
           info: (row[12]?.trim() ? row[12].trim() : row[3]?.trim()) || '',
-          Emoj: row[15]?.trim() || '',
-          Emoj2: row[11]?.trim() || '',
-          jourdispo: row[15]?.trim() ||''
+          Emoj: row[16]?.trim() || '',
+          Emoj2: row[11]?.trim() || ''
         };
       } else if (csvUrl === csvURL2) {
         return {
@@ -271,60 +188,6 @@
       }
       return {};
     }
-
-    // Mise à jour de la légende en fonction du CSV utilisé
-    function updateLegend(csvUrl) {
-      const legend = document.getElementById("legend");
-      const legendList = document.getElementById("legend-list");
-      if (csvUrl === csvURL1) {
-        legend.style.display = 'inline';
-        legendList.innerHTML = `
-          <span style="font-size:20px;">🦆:</span> Oiseaux
-          <span style="font-size:20px;">🦊:</span> Mammifères
-          <span style="font-size:20px;">🦇:</span> Chiroptères
-          <span style="font-size:20px;">🐍:</span> Serpents
-          <span style="font-size:20px;">🐢:</span> Tortues
-          <span style="font-size:20px;">🐶:</span> Domestiques
-          <span style="font-size:20px;">🐸:</span> Amphibiens
-          <span style="font-size:20px;">🦎:</span> Reptiles
-          <span style="font-size:20px;">🦆+⭕:</span> Intervention
-          <span style="font-size:20px;">▲:</span> Autre
-        `;
-      } else if (csvUrl === csvURL2) {
-        legend.style.display = 'inline';
-        legendList.innerHTML = `
-          <span style="font-size:20px;">📞:</span> : Médiation
-          <span style="font-size:20px;">🚑:</span> : Rapatrieur
-          <span style="font-size:20px;">🩺:</span> : Rapatrieur/Médiation/Soigneur
-          <span style="font-size:20px;">▲:</span> : Autre
-        `;
-      } else if (csvUrl === csvURL3) {
-        legend.style.display = 'inline';
-        legendList.innerHTML = `
-          <span style="font-size:20px;">💉:</span> Euthanasie
-          <span style="font-size:20px;">🩺:</span> Diagnostique
-          <span style="font-size:20px;">🍼:</span> Nursing
-          <span style="font-size:20px;">🛠️:</span> Opération
-          <span style="font-size:20px;">📦:</span> Point Relais
-          <span style="font-size:20px;">🩹:</span> Premiers soins
-          <span style="font-size:20px;">🩻:</span> Radiographie
-          </br> <span style="font-size:20px;">🦤:</span> Goéland
-          <span style="font-size:20px;">🦊:</span> Mammifères
-          <span style="font-size:20px;">🦆:</span> Oiseaux
-          <span style="font-size:20px;">🦔:</span> Petits mammifères
-          <span style="font-size:20px;">🕊️:</span> Pigeons Tourterelles
-          <span style="font-size:20px;">🦅:</span> Rapaces
-          <span style="font-size:20px;">🦎:</span> Reptiles
-          <span style="font-size:20px;">🐢:</span> Tortues
-          <span style="font-size:20px;">🦇:</span> Chiroptères
-          <span style="font-size:20px;">🚫🦤:</span> Pas goéland
-        `;
-      } else {
-        legend.style.display = 'none';
-      }
-    }
-
-    // Fonctions de changement de CSV / affichage de la carte
     function switchMap() {
       markers.forEach(marker => marker.setMap(null));
       markers = [];
@@ -347,33 +210,19 @@
    
 
 
+    // Gestion des événements une fois le DOM chargé
+    document.addEventListener("DOMContentLoaded", function() {
+      document.getElementById("switchMapButton").addEventListener("click", switchMap);
+      document.getElementById("switchMapButton2").addEventListener("click", switchMapToCSV3);
+      document.getElementById("switchMapButtonUrgence").addEventListener("click", switchMapUrgence);
+      document.getElementById("search-button").addEventListener("click", searchMarkers);
+      document.getElementById("manualSearchButton").addEventListener("click", manualSearch);
+      document.getElementById("manualSearchinput").addEventListener("keydown", handleKeyPress);
     
-  // Attendre que le DOM soit chargé une seule fois
-  document.addEventListener("DOMContentLoaded", function() {
-    document.getElementById("switchMapButton").addEventListener("click", switchMap);
-    document.getElementById("switchMapButton2").addEventListener("click", switchMapToCSV3);
-    document.getElementById("switchMapButtonUrgence").addEventListener("click", switchMapUrgence);
-    document.getElementById("search-button").addEventListener("click", searchMarkers);
-    document.getElementById("manualSearchButton").addEventListener("click", manualSearch);
-
-    // ✅ L'écouteur pour la touche "Entrée"
-    const input = document.getElementById("manualSearchInput");
-    input.addEventListener("keydown", function(e) {
-      if (e.key === "Enter") {
-        manualSearch();
-      }
     });
-  });
-  const input = document.getElementById("search-input");
-    input.addEventListener("keydown", function(e) {
-      if (e.key === "Enter") {
-        searchMarkers();
-      }
-    });
-
-
-    // Fonction d'initialisation de la carte
-    function initMap() {
+    
+     // Fonction d'initialisation de la carte
+     function initMap() {
       map = new google.maps.Map(document.getElementById('map'), {
         zoom: 8.8,
         center: {lat: 43.453354, lng: 6.288334}
@@ -382,8 +231,6 @@
       updateData(currentCSV);
       setInterval(() => updateData(currentCSV), 120000);
     }
-
-    // Calcul des points pour éviter le chevauchement des marqueurs
     function calculateCirclePoints(center, maxPoints, radius) {
       const points = [];
       for (let i = 0; i < maxPoints; i++) {
@@ -427,9 +274,7 @@
                   }
                 }
                 
-                if ((csvUrl === csvURL2 && urgentMode) || 
-    (csvUrl === csvURL1 && (status === "En cours" || status === "Intervention")) || 
-    status === "Disponible") {
+                if ((csvUrl === csvURL2 && urgentMode) || status === "En cours" || status === "Disponible") {
                   let markerColor;
                   let icon;
                   if (csvUrl === csvURL1) {
@@ -457,8 +302,7 @@
 
                     if (csvUrl === csvURL1) {
                       const lowerEsp = Esp.toLowerCase();
-                      const lowerStatus = status.trim().toLowerCase();
-                       if(lowerEsp.includes("oiseau")) {
+                      if(lowerEsp.includes("oiseau")) {
                         icon = { url: createOisSVG(markerColor) };
                       } else if(lowerEsp.includes("mammifère") || lowerEsp.includes("mammifere")) {
                         icon = { url: createMammSVG(markerColor) };
@@ -512,29 +356,8 @@
                       position: finalPosition,
                       map: map,
                       title: `${name} ${espece} ${Numero} \n${jourdispo}\n${info} ${Emoj} ${Emoj2}`,
-                      icon: icon,
-                      zIndex: 10 
+                      icon: icon
                     });
-                    
-          
-if (csvUrl === csvURL1 && status.trim().toLowerCase() === "intervention") {
-  console.log("Création du marqueur d'intervention");
-  const interventionOffset = {
-    lat: 0.0000,
-    lng: 0.0000
-  };
-  const interventionMarker = new google.maps.Marker({
-    position: {
-      lat: finalPosition.lat() + interventionOffset.lat,
-      lng: finalPosition.lng() + interventionOffset.lng
-    },
-    map: map,
-    icon: {      url: createInterventionSVG(markerColor)}, 
-    zIndex: 1     
-  });
-  markers.push(interventionMarker);
-}
-
                     marker.customData = {
                       cityName: cityName.toLowerCase(),
                       name: name.toLowerCase(),
@@ -544,7 +367,6 @@ if (csvUrl === csvURL1 && status.trim().toLowerCase() === "intervention") {
                     marker.addListener("click", () => {
                       infoWindow.setContent(`<div style="font-size:20px; font-weight:bold; color:#333;">${name} (${espece} ${Numero}<br>${jourdispo}<br>${info}<br>${Emoj} ${Emoj2})</div>`);
                       infoWindow.open(map, marker);
-                      
                     });
                     markers.push(marker);
                     let debugLine = "";
@@ -670,10 +492,7 @@ async function manualSearch() {
     button.innerHTML = '<span id="arrow">▶</span> Afficher les infos';
   }
 });
-
-  </script>
-
-  <!-- Chargement asynchrone de l'API Google Maps, avec callback vers initMap -->
-  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBfGs1gnWhKjQvgeebgoMtptzwjMwBKwh0&libraries=places,marker&callback=initMap" async defer></script>
+   </script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBfGs1gnWhKjQvgeebgoMtptzwjMwBKwh0&libraries=places,marker&callback=initMap" async defer></script>
 </body>
 </html>
